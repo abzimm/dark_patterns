@@ -1,0 +1,140 @@
+.glide__track {
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.glide__slides {
+    justify-content: center;
+    align-items: center;
+}
+
+.glide__slides img {
+    display: block;
+    margin: 0 auto;
+    transform: scale(0.5);
+    border-radius: 35px;
+}
+
+.glide__slide--active {
+    transform: scale(1.4);
+    /* Adjust the scale factor as needed */
+    transition: transform 0.4s ease;
+    /* Add a smooth transition effect */
+}
+
+
+/* Add these styles to your existing CSS or create a new style block */
+.glide__arrows {
+    position: absolute;
+    top: 20px;
+    /* Adjust the top position as needed */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    align-items: center;
+}
+
+.info-text {
+    display: block;
+    margin: 0 auto;
+    font-family: var(--font3);
+    color: var(--white);
+    letter-spacing: 3px;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.glide__arrow {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Optional: Add hover styles for better user feedback */
+.glide__arrow:hover {
+    background-color: #555;
+}
+
+
+.slide-label {
+    display: none;
+    position: absolute;
+    bottom: 10%;
+    /* Updated from top to bottom */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+    font-family: var(--font2);
+}
+
+
+/* Show the label when the parent slide has the active class */
+.glide__slide--active .slide-label {
+    display: block;
+}
+
+
+/* 
+#time-fog-anim {
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    transform: scale(0.5);
+    border-radius: 35px;
+} */
+
+.accordion-container {
+    z-index: 10;
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    display: flex;
+    flex-direction: row;
+    /* Change to row for horizontal accordion */
+    align-items: flex-end;
+}
+
+.accordion-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.accordion-content {
+    display: none;
+    color: white;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Add cubic bezier transition for width */
+    text-align: center;
+}
+
+
+
+.accordion-links {
+    display: flex;
+}
+
+.accordion-content a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.accordion-content a:hover {
+    background-color: #eee;
+}

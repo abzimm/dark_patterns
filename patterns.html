@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Patterns in UX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/patterns.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.theme.min.css" />
+    <script src="js/main.js"></script>
+
+
+</head>
+
+<body>
+
+
+    <nav>
+        <ul class="nav">
+            <li class="home"> <a href="index.html"> Home </a> </li>
+            <li> <a href="quiz.html"> QUIZ </a> </li>
+            <li> <a href="patterns.html"> PATTERNS </a> </li>
+            <li> <a href="play-samples.html"> PLAY SAMPLES </a> </li>
+            <li> <a href="digital-wellbeing.html"> DIGITAL WELLBEING </a> </li>
+            <li> MORE </li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+
+
+        <div class="glide">
+
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                <span class="info-text">drag to select / click to view</span>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+            </div>
+
+
+            <div class="glide__track" data-glide-el="track">
+                <div class="glide__slides">
+
+                    <div id="time-fog"><a href="patterns/time-fog.html" class="glide-link">
+                            <img src="svg-anim/time-fog-anim.svg" data-original-src="images/time-fog.svg"
+                                data-src="svg-anim/time-fog-anim.svg">
+                            <span class="slide-label">TIME FOG</span></a>
+                    </div>
+
+                    <div><a href="patterns/infinite-scroll.html" class="glide-link"><img
+                                src="images/infinite-scroll.svg" data-src="svg-anim/infinite-scroll-anim.svg"
+                                data-original-src="images/infinite-scroll.svg"></a> <span class="slide-label">INFINITE
+                            SCROLL</span></div>
+
+
+
+                    <div><a href="patterns/recapture-notif.html" class="glide-link"><img
+                                src="images/recapture-notif.svg" data-original-src="images/recapture-notif.svg"
+                                data-src="svg-anim/recapture-notif-anim.svg"></a> <span class="slide-label">RECAPTURE
+                            NOTIF</span></div>
+
+
+
+
+
+
+
+                    <div><a href="patterns/guilty-pleasure.html" class="glide-link"><img
+                                src="images/guilty-pleasure.svg" data-src="svg-anim/guilty-pleasure-anim.svg"
+                                data-original-src="images/guilty-pleasure.svg"></a> <span class="slide-label">GUILTY
+                            PLEASURE</span></div>
+
+
+                    <div><a href="patterns/content-block.html" class="glide-link"><img src="images/content-block.svg"
+                                data-original-src="images/content-block.svg"
+                                data-src="svg-anim/content-block-anim.svg"></a>
+                        <span class="slide-label">CONTENT
+                            BLOCK</span>
+                    </div>
+
+
+                    <div><a href="patterns/roach-motel.html" class="glide-link"><img src="images/roach-motel.svg"
+                                data-original-src="images/roach-motel.svg" data-src="svg-anim/roach-motel-anim.svg"></a>
+                        <span class="slide-label">ROACH
+                            MOTEL</span>
+                    </div>
+
+
+                    <div><a href="patterns/misleading-choice.html" class="glide-link"><img
+                                src="images/misleading-choice.svg" data-original-src="images/misleading-choice.svg"
+                                data-src="svg-anim/misleading-choice-anim.svg"></a>
+                        <span class="slide-label">MISLEADING CHOICE</span>
+                    </div>
+
+
+
+                    <!-- Add more items as needed -->
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="accordion-container">
+            <button class="accordion-button" onclick="toggleAccordion()">+ SOURCES</button>
+            <div class="accordion-content">
+                <div class="accordion-links">
+                    <a href="http://attentioncapture.com">attentioncapture.com</a>
+                    <a href="https://www.deceptive.design">deceptive.design</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"></script>
+    <script>
+        function toggleAccordion() {
+            var accordionContent = document.querySelector('.accordion-content');
+            accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var glide = new Glide('.glide', {
+                type: 'carousel',
+                perView: 3,
+                focusAt: 'center',
+                loop: true,
+                rewind: false,
+                animationDuration: 450,
+                breakpoints: {
+                    768: {
+                        perView: 1
+                    }
+                }
+            });
+
+            var previousSlide = null;
+
+            glide.on('run.after', function () {
+                // Access the current active slide element
+                var activeSlide = document.querySelector('.glide__slide--active');
+
+                // Check if there is a previously active slide
+                if (previousSlide) {
+                    // Remove the active class from the previously active slide
+                    previousSlide.classList.remove('glide__slide--active');
+
+                    // Check if the previously active slide has an img element
+                    var previousImg = previousSlide.querySelector('img');
+                    if (previousImg) {
+                        // Change the img src back to the original src
+                        previousImg.src = previousImg.getAttribute('data-original-src');
+                    }
+                }
+
+                // Update the previously active slide to the current active slide
+                previousSlide = activeSlide;
+
+                // Check if the active slide has an img element
+                var activeImg = activeSlide.querySelector('img');
+
+                // If img element exists, update src to data-src
+                if (activeImg) {
+                    var dataSrc = activeImg.getAttribute('data-src');
+                    if (dataSrc) {
+                        activeImg.src = dataSrc;
+                    }
+                }
+            });
+
+            var timeFogSlide = document.getElementById('time-fog');
+            timeFogSlide.classList.add('glide__slide--active');
+
+
+
+
+            // Click event handler for links
+            document.querySelectorAll('.glide-link').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    // Check if the clicked link's parent slide has the active class
+                    if (!event.target.closest('.glide__slide--active')) {
+                        event.preventDefault(); // Prevent the default behavior (i.e., navigating to the href)
+                    }
+                });
+            });
+
+
+
+            glide.mount();
+        });
+    </script>
+
+</body>
+
+</html>

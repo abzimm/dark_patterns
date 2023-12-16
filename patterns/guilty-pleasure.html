@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Patterns in UX</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pattern-info.css">
+    <script src="../js/main.js"></script>
+</head>
+
+<body>
+
+
+    <nav>
+        <ul class="nav">
+            <li class="home"> <a href="../index.html"> Home </a> </li>
+            <li> <a href="../quiz.html"> QUIZ </a> </li>
+            <li> <a href="../patterns.html"> PATTERNS </a> </li>
+            <li> <a href="../play-samples.html"> PLAY SAMPLES </a> </li>
+            <li> <a href="../digital_wellbeing.html"> DIGITAL WELLBEING </a> </li>
+            <li> MORE </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <button onclick="goBack()">
+            <!-- Use an arrow SVG here, you can replace it with your own SVG or find one online -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+            <p> BACK TO PATTERNS</p>
+        </button>
+
+        <div class="pattern-image">
+            <img src="../svg-anim/guilty-pleasure-anim.svg" alt="Item 2">
+        </div>
+
+        <div class="pattern-text">
+            <h1>guilty pleasure</h1>
+            <p>USER DATA is often used to make their experience “better”, or more curated for their personal tastes.
+                This can be seen in targeted advertising or algorithms that show people more of what they want. <br><br>
+                While most apps use personalization to increase engagement, some also use it to sell things. For
+                instance, Amazon recommends similar items every time something is viewed or interacted with. This
+                encourages people to buy more than what they originally intended. </p>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const patternImage = document.querySelector(".pattern-image img");
+
+            setTimeout(function () {
+                patternImage.classList.add("enlarge-and-move");
+            }, 750); // Adjust the delay (in milliseconds) according to your needs
+
+
+        });
+
+        function goBack() {
+            window.location.href = '../patterns.html';
+        }
+    </script>
+
+
+
+</body>
+
+</html>

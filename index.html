@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Patterns in UXt</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/main.js"></script>
+</head>
+
+<body class="">
+
+    <!-- 
+    <nav>
+        <ul class="nav">
+            <li class="home"> <a href="index.html"> Home </a> </li>
+            <li> <a href="quiz.html"> QUIZ </a> </li>
+            <li> <a href="patterns.html"> PATTERNS </a> </li>
+            <li> <a href="digital_wellbeing.html"> DIGITAL WELLBEING </a> </li>
+            <li> MORE </li>
+        </ul>
+    </nav> -->
+
+
+    <div class="container">
+
+
+
+        <div class="column">
+            <h1 id="title-1"> Dark <br> patterns <br> in ux </h1>
+            <h1 id="title-2"> dArk <br> patterns <br> in Ux </h1>
+            <h1 id="title-3"> dark <br> pAtterns <br> in uX </h1>
+            <h1 id="title-4"> dark <br> patteRns <br> iN ux </h1>
+
+            <h2> <i> understand how design affects you </i> </h2>
+        </div>
+
+        <div class="grid">
+            <div class="grid-item"></div>
+            <div class="grid-item" id="quiz"> <a href="quiz.html"> take <br>quiz </a> </div>
+            <div class="grid-item"></div>
+            <div class="grid-item"> </div>
+            <div class="grid-item"></div>
+            <div class="grid-item" id="soon">coming soon...</div>
+            <div class="grid-item"> </div>
+            <div class="grid-item" id="patterns"> <a href="patterns.html"> view patterns </div>
+            <div class="grid-item"></div>
+        </div>
+
+
+    </div>
+
+    <script>
+        // Function to toggle visibility
+        function toggleVisibility() {
+            var title1 = document.getElementById('title-1');
+            var title2 = document.getElementById('title-2');
+            var title3 = document.getElementById('title-3');
+            var title4 = document.getElementById('title-4');
+
+            switch (true) {
+                case title1.style.opacity === '1':
+                    title1.style.opacity = '0';
+                    title2.style.opacity = '1';
+                    break;
+                case title2.style.opacity === '1':
+                    title2.style.opacity = '0';
+                    title3.style.opacity = '1';
+                    break;
+                case title3.style.opacity === '1':
+                    title3.style.opacity = '0';
+                    title4.style.opacity = '1';
+                    break;
+                default:
+                    title1.style.opacity = '1';
+                    title2.style.opacity = '0';
+                    title3.style.opacity = '0';
+                    title4.style.opacity = '0';
+            }
+        }
+
+        // Set up an interval to toggle visibility every 1500 milliseconds (1.5 seconds)
+        setInterval(toggleVisibility, 2000);
+    </script>
+
+
+
+
+</body>
+
+</html>

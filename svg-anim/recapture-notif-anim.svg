@@ -1,0 +1,72 @@
+
+
+
+
+
+    <svg width="268" height="562" viewBox="0 0 268 562" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <style>
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px) rotate(1deg);
+            }
+
+            50% {
+                transform: translateX(5px) rotate(-1deg);
+            }
+
+            75% {
+                transform: translateX(-5px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .shake {
+            animation: shake 4s ease-in-out infinite alternate;
+        }
+
+        #alert1 {
+            animation-delay: 0s;
+        }
+
+        #alert2 {
+            animation-delay: 0.4s;
+        }
+
+        #alert3 {
+            animation-delay: 0.8s;
+        }
+    </style>
+        <g id="recapture-notif" clip-path="url(#clip0_102_81)">
+            <path id="bg"
+                d="M228.385 0.194458H39.4798C17.7831 0.194458 0.194336 17.7832 0.194336 39.48V521.772C0.194336 543.469 17.7831 561.057 39.4798 561.057H228.385C250.082 561.057 267.67 543.469 267.67 521.772V39.48C267.67 17.7832 250.082 0.194458 228.385 0.194458Z"
+                fill="#B4B4B4" />
+            <rect id="notif1" x="44" y="75" width="181" height="59" rx="25" fill="white" />
+            <g id="alert1" class="shake">
+                <path id="Vector 5" d="M75 65H54L64.5 116L75 65Z" fill="#FF6B00" />
+                <ellipse id="Ellipse 2" cx="64" cy="123.5" rx="4" ry="4.5" fill="#FF6B00" />
+            </g>
+            <rect id="notif2" x="44" y="172" width="181" height="59" rx="25" fill="white" />
+            <g id="alert2" class="shake">
+                <path id="Vector 5_2" d="M216 162H195L205.5 213L216 162Z" fill="#ED3415" />
+                <ellipse id="Ellipse 2_2" cx="205" cy="220.5" rx="4" ry="4.5" fill="#ED3415" />
+            </g>
+            <rect id="notif3" x="44" y="275" width="181" height="59" rx="25" fill="white" />
+            <g id="alert3" class="shake">
+                <path id="Vector 5_3" d="M75 264H54L64.5 315L75 264Z" fill="#F79B34" />
+                <ellipse id="Ellipse 2_3" cx="64" cy="322.5" rx="4" ry="4.5" fill="#F79B34" />
+            </g>
+        </g>
+        <defs>
+            <clipPath id="clip0_102_81">
+                <rect width="268" height="562" fill="white" />
+            </clipPath>
+        </defs>
+    </svg>
+

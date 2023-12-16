@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+}
+
+.column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 15%;
+    margin-left: 55%;
+    margin-right: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    /* gap: 10px; */
+    font-family: var(--font1);
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.grid-item {
+
+    /* background-color: transparent; */
+    /* margin: 5% 5%; */
+    padding: 30px 35px;
+    text-align: center;
+}
+
+#quiz {
+    background-color: orange;
+}
+
+#patterns {
+    background-color: var(--cool-orange);
+}
+
+#soon {
+    background-color: var(--bright-orange);
+}
+
+#quiz,
+#patterns {
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#quiz:hover,
+#patterns:hover {
+    transform: rotate(15deg);
+}
+
+#quiz,
+#patterns,
+#soon {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add a drop shadow */
+}
+
+
+
+h1 {
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    line-height: 120%;
+    letter-spacing: -5px;
+    /* text-shadow: 0 0 2px rgba(255, 111, 0, 0.8), 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8); */
+}
+
+
+h2 {
+    font-family: var(--font1);
+    color: var(--white);
+    letter-spacing: 1.5px;
+    font-weight: 300;
+    position: absolute;
+    top: 70%;
+
+
+
+    opacity: 0.6;
+}
+
+
+
+/* Hide the second title by default */
+#title-2,
+#title-3 {
+    opacity: 0;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Grid</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 800px;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container" id="gridContainer">
+        <!-- Your images will be dynamically added here using JavaScript -->
+    </div>
+
+    <script>
+        // Example image URLs
+        const imageUrls = [
+            'images/test1.svg',
+            'https://via.placeholder.com/400x600',
+            'https://via.placeholder.com/300x450',
+            // Add more image URLs as needed
+        ];
+
+        const gridContainer = document.getElementById('gridContainer');
+
+        // Function to create grid items with images
+        function createGridItems() {
+            imageUrls.forEach((imageUrl) => {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+
+                const img = document.createElement('img');
+                img.src = imageUrl;
+
+                gridItem.appendChild(img);
+                gridContainer.appendChild(gridItem);
+
+                // Adjust grid columns based on image width
+                const imageWidth = img.width;
+                const gridColumns = Math.ceil(imageWidth / 200); // Assuming a minimum column width of 200px
+                gridItem.style.gridColumnEnd = `span ${gridColumns}`;
+            });
+        }
+
+        // Create grid items on page load
+        createGridItems();
+    </script>
+</body>
+
+</html>

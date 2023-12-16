@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Patterns in UX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <script src="js/main.js"></script>
+
+</head>
+
+<body>
+
+
+    <nav>
+        <ul class="nav">
+            <li class="home"> <a href="index.html"> HOME </a> </li>
+            <li> <a href="quiz.html"> QUIZ </a> </li>
+            <li> <a href="patterns.html"> PATTERNS </a> </li>
+            <li> <a href="play-samples.html"> PLAY SAMPLES </a> </li>
+            <li> <a href="digital-wellbeing.html"> DIGITAL WELLBEING </a> </li>
+            <li> MORE </li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+        <div id="quiz">
+            <div id="questions"></div>
+            <ul id="answers"></ul>
+            <div id="intro">
+                Deceptive user experience patterns are found everywhere in our digital landscapes. <br><br>
+
+                <span style="margin-left: 5%; display: block;">
+                    By answering a few questions, discover which common pattern might be affecting you.
+                </span>
+                <br><br>
+            </div>
+            <button id="button"> tAke quiz </button>
+        </div>
+        <div id="results">
+            <p id="topScore"></p>
+            <div id="error" style="display: none;">An error occurred.</div>
+        </div>
+
+        <div id="transitionScreen">
+            <h2> YOU MAY HAVE EXPERIENCED... </h2>
+        </div>
+
+    </div>
+
+    <!-- <script src="js/quiz.js" defer></script> -->
+
+    <script>
+        const questionState = {
+            value: 0,
+            increment() {
+                this.value++;
+            },
+        };
+
+        const quizActive = {
+            value: true,
+            deactivate() {
+                this.value = false;
+            },
+        };
+
+        const userStats = [0, 0, 0, 0, 0, 0];
+        let tempStats = [...userStats];
+
+        const questionText = ["in a typical day, how much time do you spend online?",
+            "What kind of apps or websites do you usually spend time on?",
+            "On a scale of 1-6, with 1 being the lowest, how likely are you to instantly check a notification?",
+            "Which of these do you use the most?",
+            "Is there an app or site you check daily, out of habit?",
+            "How much money do you spend on online shopping?",
+            "Do you feel like you're missing out if you go offline?",
+            "Is it easy for you to cancel a subscription?"];
+
+
+        const answerText = [["0-2 hours",
+            "3-5 hours",
+            "5-7 hours",
+            "8-10 hours",
+            "10-12 hours",
+            "12+..."],
+
+        //question 2 answers
+        ["social media",
+            "streaming",
+            "news",
+            "productivity",
+            "e-commerce",
+            "games"],
+
+        //question 3 answers
+        ["1", "2", "3", "4", "5", "6"],
+
+        //question 4 answers
+        ["Instagram", "TikTok", "Youtube", "Twitter", "Amazon", "Other"],
+
+        //question 5 answers
+        ["Yes, but I find it important", "Yes, to distract myself", "No, but it's happened before", "No, only for school or work"],
+
+        //question 6 answers
+        ["<20$ a month", "20-50$ a month", "50-100$ a month", "100-150$ a month", "more than i'd like..."],
+
+        //question 7 answers
+        ["yes", "no", "sometimes"],
+
+        //question 8 answers
+        ["it's easy", "i have none", "sometimes it's difficult", "it's frustrating", "i have too many", "bane of my existence",]
+
+
+        ]
+
+        // ----ANSWER VALUES-----------------------
+
+        const answerValues = [[
+
+            //infinitescroll [0] timefog [1] guilty pleasures [2] recapture notif [3]
+            //contentblock (adblocker/paywall) [4] roach motel [5]
+
+            //time spent?
+            [0, 0, 0, 0, 0, 0,], // 0-2 hours,
+            [0, 0, 1, 2, 0, 0], //
+            [2, 1, 1, 2, 0, 0], // 5-7 hours
+            [3, 2, 1, 2, 0, 0],
+            [3, 2, 0, 0, 0, 0],
+            [3, 2, 0, 0, 0, 0]
+        ],
+
+        //content?
+        [[4, 3, 2, 3, 0, 0], //social media : 
+        [1, 4, 2, 0, 1, 3], //entertainment
+        [0, 0, 2, 3, 8, 3], //news
+        [0, 0, 0, 2, 4, 0], //productivity 
+        [0, 1, 4, 2, 0, 3], //e-commerce
+        [0, 0, 1, 4, 0, 0] //games
+        ],
+
+        //check notif?
+        [[0, 0, 0, 0, 0, 0], //1
+        [0, 0, 0, 1, 0, 0], //2
+        [0, 0, 1, 2, 0, 0], //3
+        [0, 0, 2, 3, 0, 0], //4
+        [0, 0, 2, 4, 0, 0], //5
+        [0, 0, 2, 4, 0, 0] //6
+        ],
+
+        //use the most?
+        [[3, 2, 2, 2, 0, 0], //instagram
+        [3, 3, 2, 2, 0, 0], //tiktok
+        [0, 4, 2, 1, 3, 0], //youtube
+        [2, 0, 1, 4, 1, 0], //twitter
+        [0, 0, 3, 0, 0, 3], //amazon
+        [0, 0, 1, 0, 4, 3] //other
+        ],
+
+        //out of habit?
+        [[2, 1, 3, 2, 3, 0], //yes-important
+        [3, 3, 2, 4, 0, 0], //yes-idk
+        [1, 1, 1, 0, 0, 0], //no, have before
+        [0, 0, 0, 0, 0, 0] //no
+        ],
+
+        //online shopping?
+        [[0, 0, 1, 0, 0, 0], //<20$ a month
+        [0, 0, 2, 0, 0, 1], //20-50 a month
+        [0, 0, 3, 0, 0, 2], //50-100 a month
+        [0, 0, 4, 0, 0, 3], //100-150 a month
+        [0, 0, 4, 0, 0, 3], //more than i'd like to say...
+        ],
+
+        //missing out?
+        [[1, 0, 1, 2, 0, 0], //yes
+        [0, 0, 0, 0, 0, 0], //no
+        [1, 0, 0, 2, 1, 0], //sometimes
+        ],
+
+        //cancel sub?
+        [[0, 0, 2, 0, 0, 0], //easy
+        [0, 0, -1, 0, 0, 0], //none
+        [0, 0, 1, 0, 0, 2], //sometimes
+        [0, 0, 2, 0, 0, 3], //annoying
+        [0, 0, 4, 0, 0, 4], //too many
+        [0, 0, 4, 0, 0, 8] //bane
+        ]
+
+        ];
+
+        const elements = {
+            results: document.getElementById("results"),
+            quiz: document.getElementById("quiz"),
+            printResult: document.getElementById("topScore"),
+            buttonElement: document.getElementById("button"),
+        };
+
+        elements.buttonElement.addEventListener("click", changeState);
+
+
+
+        function changeState() {
+            updatePatterns();
+            if (quizActive.value) {
+                const introElement = document.getElementById("intro");
+                const questionsElement = document.getElementById("questions");
+                const answersElement = document.getElementById("answers");
+
+                questionsElement.classList.add("fade-in");
+                answersElement.classList.add("fade-in");
+
+                setTimeout(() => {
+                    introElement.style.display = "none";
+                    questionsElement.classList.remove("fade-in");
+                    answersElement.classList.remove("fade-in");
+
+                    initText(questionState.value);
+                    questionState.increment();
+
+                    const answerRadios = document.querySelectorAll(
+                        'input[name="question' + questionState.value + '"]'
+                    );
+                    answerRadios.forEach((radio) => {
+                        radio.addEventListener("click", () =>
+                            setAnswer(Array.from(answerRadios).indexOf(radio))
+                        );
+                    });
+
+                    disableButton("select answer");
+
+                    if (questionState.value >= questionText.length) {
+                        // If it's the last question, disable the button
+                        updateButton("View result", true, 0.7);
+                    }
+                }, 700);
+            } else {
+                // If quiz is not active, set custom page
+                setCustomPage();
+            }
+        }
+
+        function initText(question) {
+            let answerSelection = "";
+            for (const answer of answerText[question]) {
+                answerSelection += `<li><input type='radio' name='question${question + 1}' onClick='setAnswer(${answerText[question].indexOf(answer)})' id='${answer}'><label for='${answer}'>${answer}</label></li>`;
+            }
+            document.getElementById("questions").innerHTML = questionText[question];
+            document.getElementById("answers").innerHTML = answerSelection;
+
+            // Add event listeners to handle the "active" class
+            const answerRadios = document.querySelectorAll('input[name="question' + question + '"]');
+            answerRadios.forEach((radio) => {
+                radio.addEventListener("click", () => {
+                    setAnswer(Array.from(answerRadios).indexOf(radio));
+                    handleActiveClass(answerRadios, radio);
+                });
+            });
+        }
+
+        function handleActiveClass(radios, selectedRadio) {
+            radios.forEach((radio) => {
+                const label = document.querySelector(`label[for='${radio.id}']`);
+                if (radio === selectedRadio) {
+                    radio.classList.add("active");
+                    label.classList.add("active-label");
+                } else {
+                    radio.classList.remove("active");
+                    label.classList.remove("active-label");
+                }
+            });
+        }
+
+        function setAnswer(input) {
+            clearTempStats();
+            tempStats = answerValues[questionState.value - 1][input];
+            if (questionState.value < questionText.length) {
+                updateButton("next", false, 1);
+            } else {
+                quizActive.deactivate();
+                updateButton("View result", false, 1);
+            }
+        }
+
+        function clearTempStats() {
+            tempStats = Array(userStats.length).fill(0);
+        }
+
+        function updatePatterns() {
+            for (let i = 0; i < userStats.length; i++) {
+                userStats[i] += tempStats[i];
+            }
+        }
+
+        const transitionScreen = document.getElementById("transitionScreen");
+
+        function setCustomPage() {
+            console.log("Setting custom page");
+            const highestStatPosition = userStats.indexOf(Math.max(...userStats));
+            console.log("Received stat:", userStats);
+
+            // Show the transition screen
+            transitionScreen.style.display = "block";
+            console.log("Transition screen shown");
+
+            // Simulate a delay (replace this with your actual processing logic)
+            setTimeout(() => {
+                // Simulate displaying the results
+                console.log("Displaying results");
+                elements.quiz.style.display = "none";
+                elements.results.style.display = "block";
+                elements.buttonElement.style.display = "none";
+
+                // After the results are displayed, hide the transition screen and call displayPatternResults
+                transitionScreen.style.display = "none";
+                console.log("Transition screen hidden");
+                displayPatternResults(highestStatPosition);
+            }, 2000); // Adjust the timeout based on your transition duration or processing time
+        }
+
+        function displayPatternResults(pattern) {
+            console.log("Received pattern:", pattern);
+            const { results, printResult, buttonElement } = elements;
+            const patterns = {
+                0: {
+                    redirectPage: "patterns/infinite-scroll.html",
+                },
+                1: {
+                    redirectPage: "patterns/time-fog.html",
+                },
+                2: {
+                    redirectPage: "patterns/guilty-pleasure.html",
+                },
+                3: {
+                    redirectPage: "patterns/recapture-notif.html",
+                },
+                4: {
+                    redirectPage: "patterns/content-block.html",
+                },
+                5: {
+                    redirectPage: "patterns/roach-motel.html",
+                },
+            };
+
+            const result = patterns[pattern];
+
+            if (result) {
+                window.location.href = result.redirectPage;
+            } else {
+                document.getElementById("error").style.display = "inline-block";
+            }
+
+            buttonElement.style.display = "none";
+        }
+
+        function disableButton(text) {
+            updateButton(text, true, 0.7);
+        }
+
+        function updateButton(text, disabled, opacity) {
+            const { buttonElement } = elements;
+            buttonElement.innerHTML = text;
+            buttonElement.disabled = disabled;
+            buttonElement.style.opacity = opacity;
+        }
+    </script>
+
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #circle:hover {
+            border: 1px dashed orange;
+            stroke: orange;
+            stroke-width: 5px;
+        }
+
+        #circle.active {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="151" height="111" viewBox="0 0 151 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="test" clip-path="url(#clip0_1_6)">
+            <rect id="rectangle" x="-1" width="152" height="111" fill="#D9D9D9" />
+            <ellipse id="circle" cx="35" cy="36.5" rx="16" ry="15.5" fill="#F20000" />
+        </g>
+        <defs>
+            <clipPath id="clip0_1_6">
+                <rect width="151" height="111" fill="white" />
+            </clipPath>
+        </defs>
+
+        <script>
+            document.getElementById('circle').addEventListener('click', function () {
+                this.classList.toggle('active');
+            });
+        </script>
+    </svg>
+
+</body>
+
+</html>

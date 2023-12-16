@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+}
+
+.pattern-image {
+    display: block;
+    margin: 0 auto;
+    margin-right: 35%;
+    transform: scale(0.5);
+    border-radius: 35px;
+}
+
+.pattern-image img {
+    max-width: 100%;
+
+    border-radius: 35px;
+    height: auto;
+    display: block;
+    transition: transform 0.8s, width 1s ease-in-out;
+}
+
+.enlarge-and-move {
+    transform: translateX(-250%) scale(1.6);
+}
+
+.pattern-text {
+    position: absolute;
+    margin-top: -2%;
+    margin-left: 40%;
+    margin-right: 15%;
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    color: var(--white);
+
+}
+
+.pattern-text {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 1s;
+    /* Adjust the delay (in seconds) according to your needs */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.pattern-text h1 {
+    font-family: var(--font1);
+    font-size: 4.5em;
+}
+
+
+.pattern-text p {
+    font-family: var(--font2);
+    text-indent: 10%;
+    font-size: 1.1em;
+    font-weight: 550;
+    font-kerning: normal;
+    letter-spacing: 0.1px;
+}
+
+
+
+/* 
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s;
+} */
+
+button {
+    position: absolute;
+    color: var(--white);
+    left: 5%;
+    /* Adjust the left position according to your needs */
+    top: 12%;
+    /* Adjust the top position according to your needs */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: var(--font2);
+    opacity: 0.6;
+    display: flex;
+    /* Adjust the font size according to your needs */
+}
+
+button svg {
+    width: 40px;
+    /* Adjust the width of the arrow SVG according to your needs */
+    height: 40px;
+    /* Adjust the height of the arrow SVG according to your needs */
+    fill: #000;
+    /* Adjust the fill color of the arrow SVG */
+}
+
+button p {
+    margin: 0 -15px;
+    text-indent: 3%;
+}
+
+button:hover {
+    opacity: 1;
+}

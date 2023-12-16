@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiko&family=Gruppo&family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiko&family=B612+Mono&family=Gruppo&family=Major+Mono+Display&display=swap');
+
+
+#intro {
+    margin: 0 10%;
+    font-size: 1.3em;
+    font-weight: 1400;
+    color: var(--white);
+    text-align: center;
+    font-family: var(--font2);
+    opacity: 0;
+    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#quiz {
+    margin: 2% 5%;
+    text-align: center;
+    padding: 20px;
+}
+
+#questions {
+    font-size: 2.1em;
+    margin-bottom: 50px;
+    color: #DCD9CA;
+    font-family: Major Mono Display;
+    font-weight: 1400;
+
+}
+
+#answers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0;
+    margin: 0 10%;
+    font-size: 1.3em;
+    font-weight: 800;
+    font-family: B612 Mono;
+    letter-spacing: -0.8%;
+}
+
+#answers li {
+    margin: 5% 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#answers li input {
+    display: none;
+    /* Hide the radio button */
+}
+
+#answers li label {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #DCD9CA;
+    border-radius: 25px;
+    min-height: 80px;
+    min-width: 230px;
+    max-height: 80px;
+    max-width: 230px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+    padding-top: 50px;
+
+}
+
+#answers li label:hover {
+    background-color: var(--cool-orange);
+    color: #272727;
+}
+
+#answers li input.active+label,
+#answers li input:checked+label {
+    background-color: var(--bright-orange);
+    color: #272727;
+}
+
+#button {
+    margin: 5%;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 35px;
+    font-family: Major Mono Display;
+    font-weight: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+#button:hover {
+    transform: scale(1.1)
+}
+
+#results {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+#error {
+    color: red;
+    display: none;
+}
+
+
+.pattern-image {
+    width: 100px;
+    /* Set the width as per your design */
+    height: 100px;
+    /* Set the height as per your design */
+    /* Add any other styling properties you need */
+}
+
+/* Styles for Personality Results */
+
+/* Add styles for other personalities */
+
+/* General styles for results container */
+#results {
+    padding: 20px;
+}
+
+/* Additional styling for each personality result */
+#transitionScreen {
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font2);
+    font-size: 3em;
+    opacity: 0.9;
+    color: var(--white);
+    letter-spacing: 3px;
+    font-weight: 300;
+    z-index: 5;
+    background-color: var(--black);
+    height: 200px;
+    width: 500px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+/* Add styles for other personalities */

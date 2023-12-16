@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiko&family=B612+Mono&family=Gruppo&family=Hind+Guntur&family=Major+Mono+Display&display=swap');
+
+:root {
+    --black: #221D1D;
+    --white: #e2e0d6;
+    --bright-orange: #FF3C1D;
+    --cool-orange: #FF7B51;
+    --yellow-orange: #FF9B25;
+    --font1: Major Mono Display;
+    --font2: B612 Mono;
+    --font3: Hind Guntur;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1em;
+    font-weight: 200;
+    font-family: Hind Guntur;
+    overflow-y: hidden;
+
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    opacity: 0;
+    /* Start with opacity 0 for the fade-in effect */
+    transition: opacity 0.5s ease-in;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    top: 0;
+    margin: 0 2%;
+    font-size: 1.1em;
+    font-family: var(--font2);
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+a:hover {
+    color: var(--black);
+}
+
+.nav>li {
+    margin: 2%;
+    padding: 5px;
+    border-radius: 15px;
+    font-weight: 300;
+
+}
+
+.nav>li:hover {
+    transform: rotate(8deg) scale(1.2);
+    color: var(--black);
+}
+
+
+.nav>li:nth-child(1):hover {
+    background-color: rgba(255, 165, 0, 0.9);
+}
+
+.nav>li:nth-child(2):hover {
+    background-color: var(--bright-orange);
+}
+
+.nav>li:nth-child(3):hover {
+    background-color: var(--cool-orange);
+}
+
+.nav>li:nth-child(4):hover {
+    background-color: var(--yellow-orange);
+}
+
+.nav>li:nth-child(5):hover {
+    background-color: var(--bright-orange);
+}
+
+.nav>li:nth-child(5):hover {
+    background-color: var(--cool-orange);
+}
+
+
+.nav .home {
+    margin-right: auto;
+}
+
+
+
+h1 {
+    color: #DCD9CA;
+    font-size: 7.5em;
+    font-family: Major Mono Display;
+    font-weight: 400;
+}
+
+.container {
+    /* border: 2px solid white; */
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+
+
